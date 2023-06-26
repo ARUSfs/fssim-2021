@@ -152,7 +152,7 @@ void Vehicle::onRes(const fssim_common::ResStateConstPtr &msg) {
     
     // Visualize when GO is pressed
     visualization_msgs::Marker GO_marker;
-    GO_marker.header.frame_id = "/map";
+    GO_marker.header.frame_id = "map";
     GO_marker.header.stamp = ros::Time::now();
     GO_marker.lifetime = ros::Duration(3);
     GO_marker.ns = "basic_shapes";
