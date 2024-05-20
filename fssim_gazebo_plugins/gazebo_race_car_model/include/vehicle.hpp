@@ -99,6 +99,8 @@ class Vehicle {
 
     double getMTv(const State &x, const Input &u) const;
 
+    void setDelayedSteering(const double &dt);
+
     void onCmd(const fssim_common::CmdConstPtr &msg);
 
     void onInitialPose(const geometry_msgs::PoseWithCovarianceStamped &msg);
@@ -158,6 +160,8 @@ class Vehicle {
     State state_;
     Input input_;
     double time_last_cmd_;
+
+    double delta_real, delta_v, delta_cmd;
 
     // Consider Aerodynamics
     Aero aero_;

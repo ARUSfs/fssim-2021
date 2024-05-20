@@ -63,6 +63,10 @@ Vehicle::Vehicle(physics::ModelPtr &_model,
     setPositionFromWorld();
 
     time_last_cmd_ = 0.0;
+
+    double delta_real = 0.0;
+    double delta_v = 0.0;
+    double delta_cmd = 0.0;
 }
 
 void Vehicle::setPositionFromWorld() {
@@ -113,6 +117,8 @@ void Vehicle::publish(const double sim_time) {
 void Vehicle::update(const double dt) {
     input_.dc = car_info_.torque_ok && ros::Time::now().toSec() - time_last_cmd_ < 1.0 ? input_.dc : -1.0;
 
+    setDelayedSteering(dt);
+
     double Fz = getNormalForce(state_);
 
     // Tire Forces
@@ -152,7 +158,7 @@ void Vehicle::onRes(const fssim_common::ResStateConstPtr &msg) {
     
     // Visualize when GO is pressed
     visualization_msgs::Marker GO_marker;
-    GO_marker.header.frame_id = "map";
+    GO_marker.header.frame_id = "/map";
     GO_marker.header.stamp = ros::Time::now();
     GO_marker.lifetime = ros::Duration(3);
     GO_marker.ns = "basic_shapes";
@@ -269,12 +275,26 @@ double Vehicle::getMTv(const State &x, const Input &u) const {
     const double delta = u.delta;
     const double v_x   = x.v_x;
   
-    return 0.0;
+    return 0; //noise::getGaussianNoise(0.0, 200);
 }
+
+void Vehicle::setDelayedSteering(const double &dt){
+    const double vmax = 20*3.1416/180;
+    const double amax = 150*3.1416/180;
+
+    const double delta_dot = std::clamp(delta_v,-vmax,vmax);
+    const double delta_v_dot = std::clamp(23.45*delta_cmd - 25.13*delta_real - 5*delta_v,-amax,amax);
+
+    delta_real += dt*delta_dot;
+    delta_v += dt*delta_v_dot;
+
+    input_.delta = delta_real;
+};
 
 void Vehicle::onCmd(const fssim_common::CmdConstPtr &msg) {
     input_.delta = msg->delta;
     input_.dc    = msg->dc;
+    delta_cmd = input_.delta;
     time_last_cmd_ = ros::Time::now().toSec();
 }
 
