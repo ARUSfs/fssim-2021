@@ -69,7 +69,7 @@ double Wheel::getFy(const double alpha, const double Fz) {
     const double D    = param_.D;
     const double E    = param_.E;
     const double mu_y = D * std::sin(C * std::atan(B * (1.0 - E) * alpha + E * std::atan(B * alpha)));
-    const double Fy   = Fz * mu_y;
+    const double Fy   = 2800*std::atan(Fz/3000) * mu_y;
     return Fy;
 }
 
