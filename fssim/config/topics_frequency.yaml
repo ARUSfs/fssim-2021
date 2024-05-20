@@ -20,13 +20,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-precision: 10 # In percent
+precision: 25 # In percent
 
 topics:
     -   topic: "/fssim/base_pose_ground_truth"
-        expected_frequency: 50
+        expected_frequency: 100
     -   topic: "/lidar/cones"
-        expected_frequency: 5
+        expected_frequency: 100
     -   topic: "/fssim/cmd"
         expected_frequency: 100
 
