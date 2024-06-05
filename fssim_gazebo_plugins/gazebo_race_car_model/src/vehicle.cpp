@@ -283,11 +283,11 @@ void Vehicle::setDelayedSteering(const double &dt){
     const double amax = 150*3.1416/180;
 
     const double delta_dot = std::clamp(delta_v,-vmax,vmax);
-    const double delta_v_dot = std::clamp(23.45*delta_cmd - 25.13*delta_real - 5*delta_v,-amax,amax);
+    // const double delta_v_dot = std::clamp(23.45*delta_cmd - 25.13*delta_real - 5*delta_v,-amax,amax);
+    const double delta_v_dot = std::clamp(50.45*delta_cmd - 51.13*delta_real - 5*delta_v,-amax,amax);
 
-    delta_real += dt*delta_dot;
+    delta_real += dt*delta_dot + 0.5*delta_v_dot*pow(dt,2);
     delta_v += dt*delta_v_dot;
-
     input_.delta = delta_real;
 };
 
@@ -360,6 +360,7 @@ void Vehicle::publishCarInfo(const AxleTires &alphaF,
 
     car_info.dc = input_.dc;
     car_info.delta = input_.delta;
+    car_info.delta_v = delta_v;
 
     pub_car_info_.publish(car_info);
 }

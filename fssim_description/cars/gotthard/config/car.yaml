@@ -23,7 +23,7 @@
 car:
 
   inertia:
-    m:        190.0   # Weight of the Vehicle [kg]
+    m:        300.0   # Weight of the Vehicle [kg]
     m_driver: 0.0     # Weight of the driver  [kg]
     g:        9.81    # Graviti force         [m/s^2]
     I_z:      110    # Inertial force I_zz 
@@ -53,15 +53,15 @@ car:
       b: 2.6
       c: 0.6
     C_drag: # F_Drag = C_Drag*v_x^2; C_drag = a*b*c
-      a: 0.7
+      a: 0.5
       b: 1.0
       c: 1.0
 
   drivetrain:
-    Cm1: 5000
-    Cr0: 180
+    Cm1: 4653.465346534653
+    Cr0: 0
     inertia: 0.4 # wheel_plus_packaging
-    r_dyn: 0.231
+    r_dyn: 0.202
     nm_wheels: 4
     
   torque_vectoring:

@@ -1,5 +1,5 @@
 <sdf version="1.4">
-  <model name="FSG">
+  <model name="some track">
     <include>
       <uri>model://fssim_gazebo/models/cone_blue</uri>
       <pose>-1.20535457134 -2.43421959877 0 0 0 0</pose>

@@ -22,26 +22,25 @@
 
 
 simulation_name: "FSSIM 1.0"
-robot_name: gotthard
-kill_after: 5000 # [s]
-pkg_config_storage: fssim_description
 
+robot_name: gotthard  # Name of the robot [string]
+kill_after: 6000      # After this time, repetition is stopped [s]
+
+pkg_config_storage: fssim_description # If relative path is given in following config files, the path will be taken
+                                    # wrt to this packagesendTransform
 # Config files for repetitions
-repetitions: 
-- {sensors_config_file: cars/gotthard/config/sensors.yaml, track_name: FSG.sdf, autonomous_stack:}
+repetitions:
+- {sensors_config_file: cars/gotthard/config/sensors.yaml, track_name: FSG.sdf, autonomous_stack: }
 
 # Checks which must be true in order to automatically press RES GO
 res:
   checks:
     is_in_track: true
 
+# Launch files for autonomous missions
 launch_file:
   rosbag_record: 
-  enable_autonomous_stack: true
-  bag_name: fssim
-  bag_path: ~/Descargas
 
-  
 ####################################
 ######## Possible Tracks ###########
 ####################################

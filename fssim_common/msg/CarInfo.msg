@@ -7,6 +7,7 @@ float64 dc
 float64 front_left_steering_angle
 float64 front_right_steering_angle
 float64 delta_measured
+float64 delta_v
 
 float64 vx
 float64 vy

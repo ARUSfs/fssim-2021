@@ -33,13 +33,13 @@ class BagMessageFilter:
         print(" Opening bag:",self.file_name)
         bag = rosbag.Bag(self.file_name)
 
-        val = list(bag.get_type_and_topic_info()[1].values())
+        val = bag.get_type_and_topic_info()[1].values()
         types = []
         for i in range(0, len(val)):
             types.append(val[i][0])
 
         indices =  [i for i, j in enumerate(types) if j == msg._type]
-        topics = list(bag.get_type_and_topic_info()[1].keys())
+        topics = bag.get_type_and_topic_info()[1].keys()
         matching_topics = [topics[j] for i, j in enumerate(indices)]
 
         bag.close()

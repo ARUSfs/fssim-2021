@@ -36,7 +36,7 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtWebKit import *
 
-from .cone_editor import *
+from cone_editor import *
 
 class TrackEditorPlugin(Plugin):
 
@@ -124,11 +124,11 @@ class TrackEditorPlugin(Plugin):
 
     def pushButton_skidpad(self):
         id =  self._widget.toolBoxDiscipline.currentIndex()
-        if id == 0:
+        if id is 0:
             print("Generating SKIDPAD")
             self._cones_view.generate_skipdpad(self._widget)
             self._widget.line_edit_track_name.setText("skidpad")
-        elif id == 1:
+        elif id is 1:
             print("Generating Acceleration")
             self._cones_view.generate_acceleration(self._widget)
             self._widget.line_edit_track_name.setText("acceleration")
