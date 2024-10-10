@@ -28,7 +28,7 @@ pkg_config_storage: fssim_description
 
 # Config files for repetitions
 repetitions: 
-- {sensors_config_file: cars/gotthard/config/sensors.yaml, track_name: circuito2.sdf, autonomous_stack:}
+- {sensors_config_file: cars/gotthard/config/sensors.yaml, track_name: FSG.sdf, autonomous_stack:}
 
 # Checks which must be true in order to automatically press RES GO
 res:
